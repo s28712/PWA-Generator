@@ -1,8 +1,25 @@
 import { NextPage } from "next";
+import { useContext, useEffect } from "react";
 import DropBox from "../components/dropbox";
 import FormBox from "../components/formbox";
+import { SubmissionContext } from "../contexts/submit";
 
 const Index: NextPage = () => {
+  const { mForm, setMForm, fileForm, setFileForm } = useContext(SubmissionContext);
+
+  useEffect(() => {
+    if(mForm && fileForm) {
+      console.log("Full info");
+      console.log(mForm);
+      console.log(fileForm);
+    }
+
+    else {
+      setMForm(null);
+      setFileForm(null);
+    }
+  }, [mForm, fileForm]);
+
   return (
     <div className="w-full h-full flex flex-col lg:justify-center md:items-center">
       <div className="w-full lg:w-3/4 h-3/5 lg:h-3/4 flex-none lg:flex sm:px-6 lg:px-0">
