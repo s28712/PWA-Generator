@@ -1,5 +1,6 @@
 import { NextPage } from "next";
-import React, { FC, useRef, useState } from "react";
+import React, { FC, useContext, useEffect, useRef, useState } from "react";
+import { SubmissionContext } from "../contexts/submit";
 
 interface PreviewProps {
   url: string
@@ -14,6 +15,22 @@ const Preview: FC<PreviewProps> = ({ url }) => {
 }
 
 const DropBox: NextPage = () => {
+  const { sub, setSub, fileForm, setFileForm } = useContext(SubmissionContext);
+
+  useEffect(() => {
+    if(sub) {
+      if(file) {
+        setFileForm(file);
+      }
+
+      else {
+        alert("Please add a file for icon");
+      }
+
+      setSub(false);
+    }
+  }, [sub]);
+
   const input_ref = useRef(null);
 
   const [overlay, setOverlay] = useState<boolean>(false);
@@ -112,7 +129,13 @@ const DropBox: NextPage = () => {
             </ul>
           </div>
         </section>
+        <footer className="flex justify-end px-8 pb-8 pt-4">
+          <button onClick={() => setSub(true)} className="rounded-md px-3 py-1 bg-blue-700 hover:bg-blue-500 text-white focus:shadow-outline focus:outline-none">
+            Upload
+          </button>
+        </footer>
       </article>
+      
       <input type="file" accept="image/png" onChange={fileChange} ref={input_ref} className="hidden" />
     </main>
   )

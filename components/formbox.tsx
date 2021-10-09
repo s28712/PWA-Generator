@@ -1,5 +1,6 @@
 import { NextPage } from "next";
-import React, { FC, useState } from "react";
+import React, { FC, useContext, useEffect, useState } from "react";
+import { SubmissionContext } from "../contexts/submit";
 
 const InputBox: FC<{q: string, onChange: React.ChangeEventHandler<HTMLInputElement>}> = ({ q, onChange }) => {
   return (
@@ -24,7 +25,7 @@ const DropdownBox: FC<{q: string, options: string[], onChange: React.ChangeEvent
     <div className="col-span-6 sm:col-span-3 mb-5">
       <label className="block text-lg font-medium text-gray-700">{ q }</label>
       <select onChange={onChange} className="mt-1 w-full py-2 px-3 border-2 border-gray-200 rounded-md shadow-sm focus:outline-none">
-        { options.map((opt) => <option>{ opt }</option>) }
+        { options.map((opt, key) => <option key={key}>{ opt }</option>) }
       </select>
     </div>
   );
@@ -32,6 +33,22 @@ const DropdownBox: FC<{q: string, options: string[], onChange: React.ChangeEvent
 
 
 const FormBox: NextPage = () => {
+  const { sub, setSub, mForm, setMForm } = useContext(SubmissionContext);
+
+  useEffect(() => {
+    if(sub) {
+      if(manifest.name !== "" && manifest.short !== "") {
+        setMForm(manifest);
+      }
+
+      else {
+        alert("Please fill out all of form fields")
+      }
+
+      setSub(false);
+    }
+  }, [sub]);
+
   const Orientations: string[] = [
     "any",
     "natural",
