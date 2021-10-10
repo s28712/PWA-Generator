@@ -39,9 +39,27 @@ const DropBox: NextPage = () => {
 
   function addFile(f: File) {
     let reader = new FileReader();
+
     reader.onload = (e) => {
       setFile(f);
       setURL(e.target.result.toString());
+
+      let img = document.createElement("img");
+      img.onload = async () => {
+        let canvas = document.createElement("canvas");
+        canvas.width = 512;
+        canvas.height = 512;
+
+        let ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, 512, 512);
+
+        let dataUrl = canvas.toDataURL(f.type);
+
+        const blob = await (await fetch(dataUrl)).blob();
+        const new_file = new File([blob], 'icon.png', {type:"image/png"});
+        setFile(new_file);
+      }
+      img.src = e.target.result.toString();
     }
 
     reader.readAsDataURL(f);
