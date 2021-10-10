@@ -9,7 +9,6 @@ const Index: NextPage = () => {
 
   useEffect(() => {
     if(mForm && fileForm) {
-      console.log("Full info");
       console.log(mForm);
       console.log(fileForm);
     }
@@ -17,7 +16,7 @@ const Index: NextPage = () => {
     else {
       setMForm(null);
       setFileForm(null);
-    }
+    } 
   }, [mForm, fileForm]);
 
   return (
