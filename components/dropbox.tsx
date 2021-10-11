@@ -41,7 +41,6 @@ const DropBox: NextPage = () => {
     let reader = new FileReader();
 
     reader.onload = (e) => {
-      setFile(f);
       setURL(e.target.result.toString());
 
       let img = document.createElement("img");
