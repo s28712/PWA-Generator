@@ -3,6 +3,7 @@ import { useContext, useEffect } from "react";
 import DropBox from "../components/dropbox";
 import FormBox from "../components/formbox";
 import { SubmissionContext } from "../contexts/submit";
+import genZip from "../functions/create_zip";
 
 const Index: NextPage = () => {
   const { mForm, setMForm, fileForm, setFileForm } = useContext(SubmissionContext);
@@ -11,6 +12,7 @@ const Index: NextPage = () => {
     if(mForm && fileForm) {
       console.log(mForm);
       console.log(fileForm);
+      genZip(fileForm);
     }
 
     else {
