@@ -1,10 +1,12 @@
-export default function genZip(img_file) {
+import genManifest from "./gen_manifest";
+
+export default function genZip(img_file, manifest) {
   let JSZip = require("jszip");
 
   let zip = new JSZip();
 
   let zip_folder = zip.folder("pwa");
-  zip_folder.file("Hello.txt", "Hello World\n");
+  zip_folder.file("manifest.json", genManifest(manifest));
 
   var img = zip_folder.folder("icons");
   img.file("icon.png", img_file, {base64: true});
