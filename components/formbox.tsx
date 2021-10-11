@@ -5,8 +5,8 @@ import { SubmissionContext } from "../contexts/submit";
 const InputBox: FC<{q: string, onChange: React.ChangeEventHandler<HTMLInputElement>}> = ({ q, onChange }) => {
   return (
     <div className="col-span-6 sm:col-span-3 mb-5">
-      <label className="text-lg font-medium text-gray-700">{ q }</label>
-      <input type="text" onChange={onChange} className="mt-1 pl-2 h-10 w-full shadow-sm sm:text-sm border-2 border-gray-200 rounded-md" />
+      <label htmlFor={q} className="text-lg font-medium text-gray-700">{ q }</label>
+      <input id={q} type="text" onChange={onChange} className="mt-1 pl-2 h-10 w-full shadow-sm sm:text-sm border-2 border-gray-200 rounded-md" />
     </div>
   );
 }
@@ -14,8 +14,8 @@ const InputBox: FC<{q: string, onChange: React.ChangeEventHandler<HTMLInputEleme
 const ColorBox: FC<{q: string, onChange: React.ChangeEventHandler<HTMLInputElement>}> = ({ q, onChange }) => {
   return (
     <div className="col-span-6 sm:col-span-3 mb-5 flex gap-2">
-      <label className="text-lg font-medium text-gray-700">{ q }</label>
-      <input type="color" onChange={onChange} />
+      <label htmlFor={q} className="text-lg font-medium text-gray-700">{ q }</label>
+      <input id={q} type="color" onChange={onChange} />
     </div>
   );
 }
@@ -23,8 +23,8 @@ const ColorBox: FC<{q: string, onChange: React.ChangeEventHandler<HTMLInputEleme
 const DropdownBox: FC<{q: string, options: string[], onChange: React.ChangeEventHandler<HTMLSelectElement>}> = ({ q, options, onChange }) => {
   return (
     <div className="col-span-6 sm:col-span-3 mb-5">
-      <label className="block text-lg font-medium text-gray-700">{ q }</label>
-      <select onChange={onChange} className="mt-1 w-full py-2 px-3 border-2 border-gray-200 rounded-md shadow-sm focus:outline-none">
+      <label htmlFor={q} className="block text-lg font-medium text-gray-700">{ q }</label>
+      <select id={q} onChange={onChange} className="mt-1 w-full py-2 px-3 border-2 border-gray-200 rounded-md shadow-sm focus:outline-none">
         { options.map((opt, key) => <option key={key}>{ opt }</option>) }
       </select>
     </div>
