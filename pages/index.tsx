@@ -12,7 +12,7 @@ const Index: NextPage = () => {
     if(mForm && fileForm) {
       console.log(mForm);
       console.log(fileForm);
-      genZip(fileForm);
+      genZip(fileForm, mForm);
     }
 
     else {
