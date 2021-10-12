@@ -7,7 +7,6 @@ import { SubmissionContext } from "../contexts/submit";
 import DropBox from "../components/dropbox";
 import FormBox from "../components/formbox";
 import Modal from "../components/modal";
-import Toast from "../components/toast";
 import { modalContext } from "../contexts/modal";
 
 const Index: NextPage = () => {
